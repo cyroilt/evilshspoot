@@ -1,5 +1,5 @@
 <div style="text-align:center;"> 
-*Evils Haspoot official repository
+*Evils Haspoot official repository*
 </div>
 ## License
 
