@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyoudkfgcv04g"]
+
+[ext_resource type="PackedScene" uid="uid://cwxpr1ovlpfb4" path="res://first_scene/home_russsian_base.tscn" id="1_mssxu"]
+[ext_resource type="Script" path="res://first.gd" id="1_s3pst"]
+[ext_resource type="PackedScene" uid="uid://2oxdgu03lnbk" path="res://addons/character-controller/example/main/player.tscn" id="2_sg2u3"]
+[ext_resource type="Environment" uid="uid://cr13hqw4mqt7m" path="res://first_scene/default_env.tres" id="3_1yrct"]
+[ext_resource type="Script" path="res://Node.gd" id="5_2kct5"]
+[ext_resource type="Script" path="res://addons/discord-sdk-gd/example.gd" id="6_ka8nx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ep1cq"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4c6nt"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_s3pst")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.264129, 0.440024, -0.858262, -0.668945, 0.724621, 0.16564, 0.694801, 0.53038, 0.485746, -0.627079, 23, 0)
+light_color = Color(0.803922, 0.788235, 1, 1)
+light_energy = 1.205
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+
+[node name="home_russsian_base" parent="." instance=ExtResource("1_mssxu")]
+transform = Transform3D(0.997935, 0, 0, 0, 0.997935, 0, 0, 0, 0.997935, -20.3908, 2.74616, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_sg2u3")]
+transform = Transform3D(1.536, 0, 0, 0, 1.536, 0, 0, 0, 1.536, 4.65276, 8.69058, 0)
+vertical_horizontal_ratio = 1
+angle_limit_for_rotation = null
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player"]
+light_energy = 9.596
+shadow_enabled = true
+spot_range = 11.1014
+spot_angle = 23.2961
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_1yrct")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_2kct5")
+
+[node name="DiscordSDKTutorial" type="Node" parent="."]
+script = ExtResource("6_ka8nx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1661.19, 0, 0, 0, 3.11203, 0, 0, 0, 815.904, 0, 0, 0)
+mesh = SubResource("BoxMesh_ep1cq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4c6nt")
